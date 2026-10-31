@@ -1,0 +1,31 @@
+<?php
+
+use Illuminate\Support\Facades\Facade;
+use Illuminate\Support\ServiceProvider;
+
+return [
+    'name' => env('APP_NAME', 'Masjid Jami Baeturohman'),
+    'env' => env('APP_ENV', 'production'),
+    'debug' => (bool) env('APP_DEBUG', false),
+    'url' => env('APP_URL', 'http://localhost:8000'),
+    'asset_url' => env('ASSET_URL'),
+    'timezone' => 'Asia/Jakarta',
+    'locale' => env('APP_LOCALE', 'id'),
+    'fallback_locale' => env('APP_FALLBACK_LOCALE', 'id'),
+    'faker_locale' => env('APP_FAKER_LOCALE', 'id_ID'),
+    'cipher' => 'AES-256-CBC',
+    'key' => env('APP_KEY'),
+    'previous_keys' => [
+        ...array_filter(explode(',', (string) env('APP_PREVIOUS_KEYS', ''))),
+    ],
+    'maintenance' => [
+        'driver' => env('APP_MAINTENANCE_DRIVER', 'file'),
+        'store' => env('APP_MAINTENANCE_STORE', 'database'),
+    ],
+    'providers' => ServiceProvider::defaultProviders()->merge([
+        App\Providers\AppServiceProvider::class,
+    ])->toArray(),
+    'aliases' => Facade::defaultAliases()->merge([
+        // 'Example' => App\Facades\Example::class,
+    ])->toArray(),
+];

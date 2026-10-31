@@ -1,0 +1,19 @@
+# File yang tidak perlu ikut ke deployment Vercel.
+# Catatan: vendor TIDAK dikecualikan di sini dengan sengaja — vendor tidak
+# ada di repo Git (sudah di .gitignore), dan runtime PHP Vercel memasangnya
+# dari composer.lock saat build. File-file di bawah ini tidak dibutuhkan
+# runtime dan hanya menambah ukuran deploy / berisi data lokal.
+.git
+.github
+node_modules
+tests
+.phpunit.cache
+.phpunit.result.cache
+storage/logs/*
+storage/framework/views/*
+storage/framework/cache/*
+storage/framework/sessions/*
+database/*.sqlite
+.env
+.env.backup
+.env.production
