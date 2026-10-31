@@ -1,6 +1,14 @@
 import { useEffect, useState } from 'react'
 import { mosque, features, activities, prayerCity } from './data.js'
-import { api } from './api.js'
+import { api, API_BASE } from './api.js'
+
+// Tombol "Login Admin" di navbar mengarah ke halaman login admin
+// backend Laravel, bukan ke halaman React. Alamatnya mengikuti
+// VITE_API_URL (URL backend yang sudah live); bila variabel itu
+// belum diisi, kode memakai default lokal http://127.0.0.1:8000,
+// jadi di Vercel frontend wajib diisi VITE_API_URL = URL backend
+// Vercel, lalu redeploy, supaya tombol ini tidak mengarah ke localhost.
+const adminLoginUrl = `${API_BASE}/login`
 
 function formatTanggal(tanggal) {
   if (!tanggal) return ''
@@ -290,10 +298,12 @@ export default function App() {
             ))}
           </nav>
           <a
-            href="#infaq"
+            href={adminLoginUrl}
+            target="_blank"
+            rel="noreferrer"
             className="hidden rounded-full bg-emerald-800 px-4 py-2 text-sm font-bold text-white hover:bg-emerald-900 md:block"
           >
-            Infaq Sekarang
+            Login Admin
           </a>
           <button
             onClick={() => setOpen(!open)}
@@ -314,6 +324,14 @@ export default function App() {
                 {n.label}
               </a>
             ))}
+            <a
+              href={adminLoginUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="rounded-lg bg-emerald-800 px-2 py-2 text-white hover:bg-emerald-900"
+            >
+              Login Admin
+            </a>
           </nav>
         )}
       </header>
